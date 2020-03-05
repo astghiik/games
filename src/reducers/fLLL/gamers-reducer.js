@@ -3,6 +3,9 @@ export const gamersReducer = (state = [], action) => {
         case 'ADD_GAMERS_NAMES':
             return action.payload;
             
+        case 'CLEAR':
+            return state = [];
+
         default:
             return state;
     }

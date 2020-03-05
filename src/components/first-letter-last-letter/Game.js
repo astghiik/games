@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addNewWord, next } from '../../actions';
+import { addNewWord, next } from '../../actions/flll';
 
 function GameFLLL(props) {
     let [word, setWord] = useState('');

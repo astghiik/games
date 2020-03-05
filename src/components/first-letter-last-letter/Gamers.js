@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { bindActionCreators } from 'redux';
-import { addNames, startGame } from '../../actions';
+import { addNames, startGame } from '../../actions/flll';
 import { connect } from 'react-redux';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';

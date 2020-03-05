@@ -7,6 +7,9 @@ export const wordsReducer = (state = [], action) => {
             //     alert('nope');
             //     return state;
 
+        case 'CLEAR':
+            return state = [];
+            
         default:
             return state;
     }

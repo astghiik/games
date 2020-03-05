@@ -1,11 +1,12 @@
 import React from 'react';
-import { CitiesCard, SeaBattleCard } from './cards';
+import { CitiesCard, SeaBattleCard, Minesweeper } from './cards';
 
 function Home () {
     return (
-        <div className="d-flex text-center mt-5">
+        <div className="d-flex text-center">
+            <Minesweeper />
             <SeaBattleCard />
-            <CitiesCard/>
+            <CitiesCard />
         </div>
     )
 }

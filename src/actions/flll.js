@@ -25,3 +25,10 @@ export const next = gamer => {
         payload: gamer
     }
 }
+
+export const clearResults = () => {
+    return {
+        type: 'CLEAR',
+        
+    }
+}
