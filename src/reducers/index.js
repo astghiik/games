@@ -4,5 +4,5 @@ import { minesweeper } from './minesweeper';
 
 export const allReducers = combineReducers({
     fLLL,
-    minesweeper
+    minesweeper,
 })
