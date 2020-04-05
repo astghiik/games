@@ -1,3 +1,13 @@
+export const numbersReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_NUMBERS':
+            return action.payload;
+
+        default:
+            return state;
+    }
+}
+
 export const minesReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_MINES':
@@ -25,7 +35,7 @@ export const flagsReducer = (state = [], action) => {
 export const openedAreaReducer = (state = [], action) => {
     switch (action.type) {
         case 'OPEN':
-            return [...state, action.payload];
+            return action.payload;
 
         default:
             return state;

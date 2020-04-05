@@ -5,6 +5,13 @@ export const setMines = coordinates => {
     }
 }
 
+export const setNumbers = number => {    // number = [*field index*, number]
+    return {
+        type: 'SET_NUMBERS',
+        payload: number
+    }
+}
+
 export const setFlag = field => {
     return {
         type: 'SET_FLAG',
