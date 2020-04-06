@@ -91,7 +91,7 @@ export const createField = (f, mines, area) => {
     n.push([f, q]);
     
     //console.log([f, q])
-    let cn = area.includes(f + '') ? `visible text-${setColor(q)}` : 'invisible';
+    let cn = area.includes(f) ? `visible text-${setColor(q)}` : 'invisible';
     return (
         <div className={cn}>
             {q}
