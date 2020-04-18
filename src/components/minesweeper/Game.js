@@ -12,14 +12,20 @@ function Game(props) {
 
     function openField (e, f = +e.currentTarget.dataset.i)  {
         if (arguments.length === 1) e.preventDefault();
+        console.log(e.currentTarget, e.target)
+
+        if (minesCoordinates.includes(f) && !flags.includes(f)) {    // game over
+            opened = opened.concat(minesCoordinates);
+            openArea(opened);
+            return;
+        }
 
         for (let i = 0; i < arguments.length; i++) {
             let field = arguments.length === 1 ? f : arguments[i];
-            let number = numbers.find(arr => arr[0] === field);
 
             if (opened.includes(field) || flags.includes(field) || field < 0 || field > 599) continue;
        
-            if (!number) {  
+            if (!numbers.includes(field)) {  
                 if (field % 30 === 0) {
                     if (field === 0) {
                         opened.push(field);
@@ -77,7 +83,7 @@ function Game(props) {
                 className={`float-left rounded bg-${openedArea.includes(i) ? 'white': flags.includes(i) ? 'danger border' : 'secondary border'}`}
                 onContextMenu={flag} 
                 onClick={openField}
-                style={{width: '25px', height: '25px'}}
+                style={{width: '25px', height: '25px', userSelect: 'none'}}
                 data-i={i}
                 key={i}
             >

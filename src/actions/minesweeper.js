@@ -32,3 +32,9 @@ export const openArea = field => {
         payload: field
     }
 }
+
+export const newGame = () => {
+    return {
+        type: 'START_NEW_GAME'
+    }
+}
