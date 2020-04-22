@@ -1,10 +1,12 @@
 import React from 'react';
+import Alert from 'react-bootstrap/Alert';
 import { connect } from 'react-redux';
 import NewGame, { createField } from './NewGame';
 import { bindActionCreators } from 'redux';
 import { setNumbers, setFlag, removeFlag, openArea } from '../../actions/minesweeper';
 
 
+let alertDisplay = 'none';
 function Game(props) {
     let { minesCoordinates, numbers, flags, setFlag, removeFlag, openArea, openedArea } = props;
     let body = [];
@@ -12,10 +14,10 @@ function Game(props) {
 
     function openField (e, f = +e.currentTarget.dataset.i)  {
         if (arguments.length === 1) e.preventDefault();
-        console.log(e.currentTarget, e.target)
 
         if (minesCoordinates.includes(f) && !flags.includes(f)) {    // game over
             opened = opened.concat(minesCoordinates);
+            alertDisplay = 'block';
             openArea(opened);
             return;
         }
@@ -95,7 +97,8 @@ function Game(props) {
     }
 
     return (
-        <div className='text-center  mx-auto mt-5' style={{width: '750px'}}>
+        <div className='text-center mx-auto mt-5' style={{width: '750px'}}>
+            <Alert variant='danger' className={`d-${alertDisplay}`}>Game Over!</Alert>
             {body}
             <NewGame/>
         </div>

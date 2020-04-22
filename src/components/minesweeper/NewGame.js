@@ -102,7 +102,7 @@ function NewGame(props) {
             className='mt-1' 
             onClick={handleBtnClick}
         >
-            New
+            New Game
         </Button>
     )
 }
