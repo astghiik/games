@@ -1,3 +1,13 @@
+export const gameStateReducer = (state = true, action) => {
+    switch (action.type) {
+        case 'IS_START':
+            return action.payload;
+
+        default:
+            return state;
+    }
+}
+
 export const numbersReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_NUMBERS':

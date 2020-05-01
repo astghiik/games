@@ -1,11 +1,12 @@
 import { combineReducers } from 'redux';
-import { numbersReducer, minesReducer, flagsReducer, openedAreaReducer } from './mines-reducer';
+import { gameStateReducer, numbersReducer, minesReducer, flagsReducer, openedAreaReducer } from './mines-reducer';
 
 const mw = combineReducers({
-    numbers: numbersReducer,
-    minesCoordinates: minesReducer,
-    flags: flagsReducer,
-    openedArea: openedAreaReducer
+  start: gameStateReducer,
+  numbers: numbersReducer,
+  minesCoordinates: minesReducer,
+  flags: flagsReducer,
+  openedArea: openedAreaReducer
 });
 
 

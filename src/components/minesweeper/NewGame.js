@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import Button from 'react-bootstrap/Button';
-import { setMines, setNumbers, newGame } from '../../actions/minesweeper';
+import { setMines, setNumbers, newGame, gameState } from '../../actions/minesweeper';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -81,6 +81,8 @@ export const createField = (f, mines, area) => {
     )
 }
 
+
+
 function NewGame(props) {
     let coordinates = [];
     const { setNumbers, setMines, newGame } = props;
@@ -94,6 +96,7 @@ function NewGame(props) {
         newGame();
         setMines(coordinates);
         setNumbers(n);
+      //  gameState(true);
     }
     
     return (
@@ -114,7 +117,7 @@ const mapStateToProps = state => {
 }
 
 const matchDispatchToProps = dispatch => {
-    return bindActionCreators({ setMines, setNumbers, newGame }, dispatch);
+    return bindActionCreators({ setMines, setNumbers, newGame, gameState }, dispatch);
 }
 
 

@@ -1,3 +1,10 @@
+export const gameState = s => {
+    return {
+        type: 'IS_START',
+        payload: s
+    }
+}
+
 export const setMines = coordinates => {
     return {
         type: 'SET_MINES',

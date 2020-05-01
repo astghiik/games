@@ -3,12 +3,21 @@ import Alert from 'react-bootstrap/Alert';
 import { connect } from 'react-redux';
 import NewGame, { createField } from './NewGame';
 import { bindActionCreators } from 'redux';
-import { setNumbers, setFlag, removeFlag, openArea } from '../../actions/minesweeper';
+import { setNumbers, setFlag, removeFlag, openArea, gameState } from '../../actions/minesweeper';
 
 
-let alertDisplay = 'none';
 function Game(props) {
-    let { minesCoordinates, numbers, flags, setFlag, removeFlag, openArea, openedArea } = props;
+    let {   
+            start,
+            minesCoordinates,
+            numbers, 
+            flags, 
+            setFlag, 
+            removeFlag, 
+            openArea, 
+            openedArea, 
+            gameState 
+        } = props;
     let body = [];
     let opened = [...openedArea];
 
@@ -17,7 +26,7 @@ function Game(props) {
 
         if (minesCoordinates.includes(f) && !flags.includes(f)) {    // game over
             opened = opened.concat(minesCoordinates);
-            alertDisplay = 'block';
+            gameState(false);
             openArea(opened);
             return;
         }
@@ -98,15 +107,16 @@ function Game(props) {
 
     return (
         <div className='text-center mx-auto mt-5' style={{width: '750px'}}>
-            <Alert variant='danger' className={`d-${alertDisplay}`}>Game Over!</Alert>
+            <Alert variant='danger' className={`d-${start ? 'none' : 'block'}`}>Game Over!</Alert>
             {body}
-            <NewGame/>
+            <NewGame onClick={() => gameState(true)}/>
         </div>
     )
 }
 
 const mapStateToProps = state => {
     return {
+        start: state.minesweeper.start,
         numbers: state.minesweeper.numbers,
         minesCoordinates: state.minesweeper.minesCoordinates,
         flags: state.minesweeper.flags,
@@ -115,7 +125,7 @@ const mapStateToProps = state => {
 }
 
 const matchDispatchToProps = dispatch => {
-    return bindActionCreators({ setNumbers, setFlag, removeFlag, openArea }, dispatch);
+    return bindActionCreators({ setNumbers, setFlag, removeFlag, openArea, gameState }, dispatch);
 }
 
 
