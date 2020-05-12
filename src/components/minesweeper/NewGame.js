@@ -71,7 +71,7 @@ export const createField = (f, mines, area) => {
   
     // n.push([f, q]);
     n.push(f);
-    
+   
    
     let cn = area.includes(f) ? `visible text-${setColor(q)}` : 'invisible';
     return (
@@ -84,18 +84,24 @@ export const createField = (f, mines, area) => {
 
 
 function NewGame(props) {
+    n = [];
     let coordinates = [];
     const { setNumbers, setMines, newGame } = props;
 
     for (let i = 0; i < 80; i++) {
-        coordinates.push(Math.floor(Math.random() * 600));
+        let c = Math.floor(Math.random() * 600);
+        if (!coordinates.includes(c)) {
+
+            coordinates.push(c);
+        } else {
+            i--;
+        }
     }
 
     const handleBtnClick = () => {
-        n = [];
-        newGame();
-        setMines(coordinates);
+        newGame();            // reset
         setNumbers(n);
+        setMines(coordinates);
       //  gameState(true);
     }
     
