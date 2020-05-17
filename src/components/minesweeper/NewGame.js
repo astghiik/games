@@ -91,7 +91,6 @@ function NewGame(props) {
     for (let i = 0; i < 80; i++) {
         let c = Math.floor(Math.random() * 600);
         if (!coordinates.includes(c)) {
-
             coordinates.push(c);
         } else {
             i--;
@@ -100,6 +99,7 @@ function NewGame(props) {
 
     const handleBtnClick = () => {
         newGame();            // reset
+        n = [];
         setNumbers(n);
         setMines(coordinates);
       //  gameState(true);

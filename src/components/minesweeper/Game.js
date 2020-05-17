@@ -6,6 +6,8 @@ import { bindActionCreators } from 'redux';
 import { setFlag, removeFlag, openArea, gameState } from '../../actions/minesweeper';
 
 
+let alertMessage = {};
+
 function Game(props) {
     let {   
             start,
@@ -20,12 +22,15 @@ function Game(props) {
         } = props;
     let body = [];
     let opened = [...openedArea];
-    let alertV = 'danger';
 
     function openField (e, f = +e.currentTarget.dataset.i)  {
         if (arguments.length === 1) e.preventDefault();
 
         if (minesCoordinates.includes(f) && !flags.includes(f) && start) {    // game over
+            alertMessage = {
+                variant: 'danger',
+                text: 'Game Over'
+            };
             opened = opened.concat(minesCoordinates);
             gameState(false);
             openArea(opened);
@@ -78,9 +83,11 @@ function Game(props) {
         openArea(opened);
 
         if (opened.length === 520) {
-            alertV = 'success';
-            console.log(opened)
-            console.log(openedArea)
+            alertMessage = {
+                variant: 'success',
+                text: 'nice'
+            };
+
             gameState(false);
             return;
         }
@@ -119,9 +126,9 @@ function Game(props) {
 
     return (
         <div className='text-center mx-auto mt-5' style={{width: '750px'}}>
-            <Alert variant={alertV} className={`d-${start ? 'none' : 'block'}`}>Game Over!</Alert>
+            <Alert variant={alertMessage.variant} className={`d-${start ? 'none' : 'block'}`}>{alertMessage.text}</Alert>
             {body}
-            <NewGame onClick={() => gameState(true)}/>
+            <NewGame />
         </div>
     )
 }

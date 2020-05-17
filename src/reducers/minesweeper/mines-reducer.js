@@ -11,8 +11,6 @@ export const gameStateReducer = (state = true, action) => {
 export const numbersReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_NUMBERS':
-            console.log(action.payload)
-            console.log([...action.payload])
             return action.payload;
 
         default:
