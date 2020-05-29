@@ -2,6 +2,7 @@ import React from 'react';
 import Alert from 'react-bootstrap/Alert';
 import { connect } from 'react-redux';
 import NewGame, { createField } from './NewGame';
+import Time from './Time';
 import { bindActionCreators } from 'redux';
 import { setFlag, removeFlag, openArea, gameState } from '../../actions/minesweeper';
 
@@ -26,11 +27,8 @@ function Game(props) {
     function openField (e, f = +e.currentTarget.dataset.i)  {
         if (arguments.length === 1) e.preventDefault();
 
-        if (minesCoordinates.includes(f) && !flags.includes(f) && start) {    // game over
-            alertMessage = {
-                variant: 'danger',
-                text: 'Game Over'
-            };
+        if (minesCoordinates.includes(f) && !flags.includes(f) && start) {    // game over         
+            Object.assign(alertMessage, { variant: 'danger', text: 'Game Over' });
             opened = opened.concat(minesCoordinates);
             gameState(false);
             openArea(opened);
@@ -83,11 +81,6 @@ function Game(props) {
         openArea(opened);
 
         if (opened.length === 520) {
-            alertMessage = {
-                variant: 'success',
-                text: 'nice'
-            };
-
             gameState(false);
             return;
         }
@@ -105,14 +98,19 @@ function Game(props) {
             removeFlag(field);
         }
     }
-    
 
+    const showResult = t => {
+        Object.assign(alertMessage, { variant: 'success', text: `Well Done! Your result is ${t}` });
+    }
+    
+    
+    console.log(alertMessage)
     for (let i = 0; i < 600; i++) {
         body.push(
             <div
                 className={`float-left rounded bg-${openedArea.includes(i) ? 'white': flags.includes(i) ? 'danger border' : 'secondary border'}`}
-                onContextMenu={flag} 
-                onClick={openField}
+                onContextMenu={start ? flag : null} 
+                onClick={start ? openField : null}
                 style={{width: '25px', height: '25px', userSelect: 'none'}}
                 data-i={i}
                 key={i}
@@ -128,7 +126,10 @@ function Game(props) {
         <div className='text-center mx-auto mt-5' style={{width: '750px'}}>
             <Alert variant={alertMessage.variant} className={`d-${start ? 'none' : 'block'}`}>{alertMessage.text}</Alert>
             {body}
-            <NewGame />
+            <div className='d-inline-flex'>
+                <Time showResult={showResult} />
+                <NewGame />
+            </div>
         </div>
     )
 }

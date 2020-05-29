@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import { setMines, setNumbers, newGame, gameState } from '../../actions/minesweeper';
 import { bindActionCreators } from 'redux';
@@ -60,20 +60,16 @@ export const createField = (f, mines, area) => {
         if (mines.includes(f - 1)) q++;
         if (mines.includes(f + 1)) q++;
     }
-
     
     if (q === 0) return '';
 
     const setColor = q => {
         return ['primary', 'dark', 'danger', 'success', 'warning', 'info', 'secondary', 'danger'][q - 1];
     }
-    
   
-    // n.push([f, q]);
     n.push(f);
-   
-   
     let cn = area.includes(f) ? `visible text-${setColor(q)}` : 'invisible';
+
     return (
         <div className={cn}>
             {q}
@@ -86,7 +82,7 @@ export const createField = (f, mines, area) => {
 function NewGame(props) {
     n = [];
     let coordinates = [];
-    const { setNumbers, setMines, newGame } = props;
+    const { setNumbers, setMines, newGame, gameState } = props;
 
     for (let i = 0; i < 80; i++) {
         let c = Math.floor(Math.random() * 600);
@@ -102,13 +98,16 @@ function NewGame(props) {
         n = [];
         setNumbers(n);
         setMines(coordinates);
-      //  gameState(true);
+        gameState(true);
     }
+
+    useEffect(() => handleBtnClick(), []);
+    
     
     return (
         <Button 
             variant='primary' 
-            className='mt-1' 
+            className='m-1' 
             onClick={handleBtnClick}
         >
             New Game
