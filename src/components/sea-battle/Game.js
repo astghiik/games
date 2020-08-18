@@ -4,7 +4,7 @@ import Table from 'react-bootstrap/Table';
 
 function GameSB(props) {
     let tBody = [];
-    
+
     for (let i = 0; i < 10; i++) {
         let tr = [];
 
@@ -16,11 +16,19 @@ function GameSB(props) {
     }
 
     return (
-        <Table bordered className="w-25 m-auto">
-            <tbody>
-                {tBody}
-            </tbody>
-        </Table>
+        <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+            <Table bordered className="w-25 m-5">
+                <tbody>
+                    {tBody}
+                </tbody>
+            </Table>
+            <Table bordered className="w-25 m-5">
+                <tbody>
+                    {tBody}
+                </tbody>
+            </Table>
+
+        </div>
     )
 }
 
