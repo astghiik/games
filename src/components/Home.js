@@ -1,10 +1,10 @@
 import React from 'react';
-import { CitiesCard, SeaBattleCard, Minesweeper } from './cards';
+import { CitiesCard, SeaBattleCard, MinesweeperCard } from './cards';
 
-function Home () {
+function Home() {
     return (
         <div className="d-flex text-center">
-            <Minesweeper />
+            <MinesweeperCard />
             <SeaBattleCard />
             <CitiesCard />
         </div>

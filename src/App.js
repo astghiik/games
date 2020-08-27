@@ -6,8 +6,8 @@ import { allReducers } from './reducers';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
-import GameSB from './components/sea-battle/Game';
 import Minesweeper from './components/minesweeper/Game';
+import SeaBattle from './components/sea-battle/Game';
 
 
 const store = createStore(allReducers);
@@ -22,13 +22,13 @@ function App(props) {
             <FLLL />
           </Route>
           <Route path='/sea-battle'>
-            <GameSB />
+            <SeaBattle />
           </Route>
           <Route path='/minesweeper'>
             <Minesweeper />
           </Route>
           <Route path='/'>
-            <Home/>
+            <Home />
           </Route>
         </Switch>
       </Provider>
