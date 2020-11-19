@@ -9,10 +9,10 @@ function Computer() {
         let tr = [];
 
         for (let j = 0; j < 10; j++) {
-            tr.push(<th className="bg-info" data-n={i * 10 + j}></th>);
+            tr.push(<th className="bg-info" data-n={i * 10 + j} key={j}></th>);
         }
 
-        tBody.push(<tr>{tr}</tr>)
+        tBody.push(<tr key={i}>{tr}</tr>)
     }
 
     return (
